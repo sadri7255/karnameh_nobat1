@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📊 جدول نمرات حرفه‌ای</title>
+    <title>📊 شبیه ساز کارنامه</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
@@ -151,7 +151,7 @@
 <body>
 
 <div class="container">
-    <h2>📚 جدول نمرات دانش‌آموزی</h2>
+    <h2>📚 محاسبه نمرات کارنامه دانش‌آموزی 📚</h2>
     <table>
         <thead>
             <tr>
@@ -160,7 +160,7 @@
                 <th>واحد</th>
                 <th>مستمر۱</th>
                 <th>پایانی۱</th>
-                <th>معدل نوبت اول</th>
+                <th>نمره نهایی</th>
                 <th>عملیات</th>
             </tr>
         </thead>
@@ -168,7 +168,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="2">مجموع</td>
+                <td colspan="2">جمع کل واحد</td>
                 <td id="totalUnits">0</td>
                 <td colspan="2">معدل کل</td>
                 <td id="overallAverage">0.00</td>
@@ -177,7 +177,7 @@
         </tfoot>
     </table>
     <button class="button" onclick="addRow()"><i class="fas fa-plus"></i> افزودن سطر</button>
-    <button class="clear-button" onclick="clearTable()"><i class="fas fa-trash"></i> پاک کردن جدول</button>
+    <button class="clear-button" onclick="clearTable()"><i class="fas fa-trash"></i> خالی کردن جدول</button>
 </div>
 
 <script>
@@ -242,8 +242,8 @@
         }
     }
 
-    // ایجاد 20 سطر پیش‌فرض
-    for (let i = 0; i < 20; i++) {
+    // ایجاد 18 سطر پیش‌فرض
+    for (let i = 0; i < 18; i++) {
         addRow();
     }
 </script>
