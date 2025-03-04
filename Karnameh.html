@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 جدول نمرات حرفه‌ای</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            transition: 0.3s ease-in-out;
+        }
+        h2 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+        th {
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            color: white;
+            font-weight: bold;
+        }
+        tfoot {
+            background: #ecf0f1;
+            font-weight: bold;
+        }
+        input {
+            width: 80%;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+        }
+        .button {
+            background: linear-gradient(90deg, #1abc9c, #16a085);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .button i {
+            margin-left: 8px;
+        }
+        .button:hover {
+            background: linear-gradient(90deg, #16a085, #1abc9c);
+            transform: scale(1.05);
+        }
+        .clear-button {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .clear-button i {
+            margin-left: 8px;
+        }
+        .clear-button:hover {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            transform: scale(1.05);
+        }
+        .delete-button {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+            font-family: 'Vazirmatn', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delete-button i {
+            margin-left: 8px;
+        }
+        .delete-button:hover {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            transform: scale(1.05);
+        }
+        .row-highlight {
+            background: rgba(52, 152, 219, 0.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📚 جدول نمرات دانش‌آموزی</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام درس</th>
+                <th>واحد</th>
+                <th>مستمر۱</th>
+                <th>پایانی۱</th>
+                <th>معدل نوبت اول</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody id="gradesTable">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">مجموع</td>
+                <td id="totalUnits">0</td>
+                <td colspan="2">معدل کل</td>
+                <td id="overallAverage">0.00</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <button class="button" onclick="addRow()"><i class="fas fa-plus"></i> افزودن سطر</button>
+    <button class="clear-button" onclick="clearTable()"><i class="fas fa-trash"></i> پاک کردن جدول</button>
+</div>
+
+<script>
+    let rowCount = 0;
+
+    function addRow() {
+        rowCount++;
+        const table = document.getElementById("gradesTable");
+        const row = table.insertRow();
+        row.classList.add("fade-in");
+
+        row.innerHTML = `
+            <td>${rowCount}</td>
+            <td><input type="text" oninput="updateCalculations()"></td>
+            <td><input type="text" oninput="this.value = convertToEnglishNumbers(this.value); updateCalculations();" class="units"></td>
+            <td><input type="text" oninput="this.value = convertToEnglishNumbers(this.value); updateCalculations();" class="midterm"></td>
+            <td><input type="text" oninput="this.value = convertToEnglishNumbers(this.value); updateCalculations();" class="final"></td>
+            <td class="average">0.00</td>
+            <td><button class="delete-button" onclick="deleteRow(this)"><i class="fas fa-trash"></i> حذف</button></td>
+        `;
+        if (rowCount % 2 === 0) row.classList.add("row-highlight");
+        updateCalculations();
+    }
+
+    function updateCalculations() {
+        let totalUnits = 0;
+        let totalWeightedGrades = 0;
+
+        document.querySelectorAll("#gradesTable tr").forEach(row => {
+            const units = parseFloat(row.querySelector(".units")?.value) || 0;
+            const midterm = parseFloat(row.querySelector(".midterm")?.value) || 0;
+            const final = parseFloat(row.querySelector(".final")?.value) || 0;
+
+            const avg = ((midterm * 1) + (final * 2)) / 3;
+            row.querySelector(".average").textContent = avg.toFixed(2);
+
+            totalUnits += units;
+            totalWeightedGrades += avg * units;
+        });
+
+        document.getElementById("totalUnits").textContent = totalUnits;
+        document.getElementById("overallAverage").textContent = totalUnits ? (totalWeightedGrades / totalUnits).toFixed(2) : "0.00";
+    }
+
+    function convertToEnglishNumbers(str) {
+        return str.replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+    }
+
+    function clearTable() {
+        document.querySelectorAll("#gradesTable tr").forEach(row => {
+            row.querySelectorAll("input").forEach(input => input.value = "");
+            row.querySelector(".average").textContent = "0.00";
+        });
+        updateCalculations();
+    }
+
+    function deleteRow(button) {
+        if (confirm("آیا مطمئن هستید که می‌خواهید این سطر را حذف کنید؟")) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+            updateCalculations();
+        }
+    }
+
+    // ایجاد 20 سطر پیش‌فرض
+    for (let i = 0; i < 20; i++) {
+        addRow();
+    }
+</script>
+
+</body>
+</html>
